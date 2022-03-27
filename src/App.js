@@ -30,7 +30,6 @@ function App() {
     return null
   })
 
-  console.log(collections)
 
   return (
     <div className="">
