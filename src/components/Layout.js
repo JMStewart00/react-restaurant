@@ -19,12 +19,10 @@ function Layout({ children }) {
             {children}
             <div className="bg-dark mt-5">
                 <Container className="p-3">
-                    <p className="text-center text-white">Thank you for visiting this website</p>
+                    <p className="text-center text-white py-3">Wok this way for a taste that will stir up your senses!</p>
                     <Row className='align-items-center justify-content-center'>
-                        <Col className="text-center">
-                            <img src={logoNoBackground} alt="" style={{ width: '300px' }}/>
-                        </Col>
                         <Col className="text-center text-white">
+                            <img src={logoNoBackground} alt="" style={{ width: '300px' }}/>
                             <address>
                                 <p>348 E Main Street</p>
                                 <p>Lexington, KY 40507</p>
