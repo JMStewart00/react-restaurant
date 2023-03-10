@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react';
+import { Container, Row, Stack } from 'react-bootstrap';
 import axios from "axios";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
+
 import TabLink from './components/TabLink';
 import Collection from './components/Collection';
+import Layout from './components/Layout';
 
-const URL = 'https://sheltered-refuge-85246.herokuapp.com/api/json'
+const URL = 'https://www.jsonkeeper.com/b/MDXW';
 
 function App() {
-  const [ items, setItems ] = useState([]);
-  const [ activeTab, setActiveTab ] = useState('Appetizer');
+  const [items, setItems] = useState([]);
+  const [activeTab, setActiveTab] = useState('Breakfast');
 
   const fetchData = async () => {
     let response = await axios.get(URL);
@@ -18,24 +24,41 @@ function App() {
     fetchData();
   }, [])
 
-  let tabs = ['Appetizer', 'Sandwiches', 'Pasta', 'Burgers'];
+  let tabs = ['Breakfast', 'Lunch', 'Dinner', 'Appetizer', 'Drink'];
   let buttons = tabs.map(item => {
-    return <TabLink key={item} setActiveTab={setActiveTab} tabName={item}/>
+    return (
+      <TabLink
+        key={item}
+        setActiveTab={setActiveTab}
+        tabName={item}
+        activeTab={activeTab}
+      />
+    )
   })
 
   let collections = tabs.map(item => {
     if (activeTab === item) {
-      return <Collection key={item} items={items} filter={item}/>
+      return <Collection key={item} items={items} filter={item} />
     }
     return null
   })
 
 
   return (
-    <div className="">
-      {buttons}
-      {collections}
-    </div>
+    <Layout>
+      <Stack
+        direction="horizontal"
+        gap={3}
+        className="justify-content-center my-3"
+      >
+        {buttons}
+      </Stack>
+      <Container style={{minHeight: '50vh'}}>
+        <Row className="justify-content-center">
+          {collections}
+        </Row>
+      </Container>
+    </Layout>
   );
 }
 

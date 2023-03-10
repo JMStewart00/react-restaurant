@@ -1,10 +1,12 @@
+import MenuItem from "./MenuItem";
+
 function Collection({ items, filter }) {
-  let filteredItems = items.filter(item => item.category.title === filter);
+  let filteredItems = items.filter(item => item.category === filter);
 
   return (
-    <div className="">
-      {filteredItems.map(item => <div key={item.id}>{item.title}</div>)}
-    </div>
+    <>
+      {filteredItems.map(item => <MenuItem key={item.id} item={item} />)}
+    </>
   );
 }
 

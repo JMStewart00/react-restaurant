@@ -1,8 +1,15 @@
-function TabLink({ setActiveTab, tabName }) {
+import { Button } from "react-bootstrap";
+
+function TabLink({ setActiveTab, tabName, activeTab }) {
   return (
-    <button className="" onClick={() => setActiveTab(tabName)}>
+    <Button
+      variant="outline-dark"
+      size="lg"
+      onClick={() => setActiveTab(tabName)}
+      active={activeTab === tabName}
+    >
       {tabName}
-    </button>
+    </Button>
   );
 }
 
